@@ -1,7 +1,15 @@
 <template>
   <div>
-    <input v-model="internalValue" class="tgl" :name="id" type="checkbox"/>
-    <label class="tgl-btn" :for="id" @click="toggle"></label>
+    <input
+      v-model="internalValue"
+      class="tgl"
+      :class="{ 'force-disable': forceDisable }"
+      :name="id"
+      type="checkbox"/>
+    <label
+      class="tgl-btn"
+      :for="id"
+      @click="toggle"></label>
   </div>
 </template>
 
@@ -17,6 +25,7 @@ export default {
   data: () => ({
     id: null,
     internalValue: false,
+    forceDisable: false,
   }),
   mounted() {
     // eslint-disable-next-line no-underscore-dangle
@@ -28,9 +37,20 @@ export default {
       this.internalValue = !this.internalValue
       this.$emit('input', this.internalValue)
     },
+    disable() {
+      // Briefly add class to alter animation to something more "bouncy"
+      this.forceDisable = true
+      setTimeout(() => {
+        this.forceDisable = false
+      }, 0)
+    },
   },
   watch: {
     value(newValue) {
+      // Value changed from prop (and not by `toggle` method)
+      if (newValue === false && this.internalValue === true) {
+        this.forceDisable()
+      }
       this.internalValue = newValue
     },
   },
@@ -67,18 +87,24 @@ export default {
 }
 
 .tgl {
-	display: none;
+  display: none;
   + .tgl-btn {
-		background: #f0f0f0;
+    background: #f0f0f0;
 		border-radius: 2em;
 		padding: 2px;
 		transition: all .4s ease;
 		&:after {
-			border-radius: 50%;
+      border-radius: 50%;
 			background: #fff;
 			transition: all .2s ease;
 		}
 	}
+  &.force-disable + .tgl-btn {
+    &,
+    &::after {
+      transition: all .3s cubic-bezier(1, 0, .25, 1) .2s;
+    }
+  }
 	&:checked + .tgl-btn {
 		background: #9FD6AE;
 	}
