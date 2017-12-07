@@ -34,22 +34,27 @@ export default {
   }),
   computed: {
     areAnyAttributesDisabled() {
-      return _some(this.attributes, attribute => attribute.value === false)
+      // Continue until a disabled attribute is found
+      return _some(this.attributes, attr => attr.value === false)
     },
   },
   methods: {
     disableAttribute(toggledAttributeIndex) {
+      // Disable one attribute if all attributes are enabled.
+      // However, don't disable the attribute that was just enabled.
       if (this.areAnyAttributesDisabled === false) {
-        const indexToDisable = this.getRandomInArray(this.attributes, toggledAttributeIndex)
-        this.attributes[indexToDisable].value = false
+        const attributeToDisable = this.getRandomInArray(this.attributes, toggledAttributeIndex)
+        attributeToDisable.value = false
       }
     },
-    getRandomInArray(array, indexToExclude) {
+    getRandomInArray(array, indexToExclude = null) {
+      // Returns a random item in an array, but never
+      // an item with an index matching `indexToExclude`.
       const randomIndex = Math.floor(Math.random() * array.length)
       if (randomIndex === indexToExclude) {
         return this.getRandomInArray(array, indexToExclude)
       }
-      return randomIndex
+      return array[randomIndex]
     },
   },
 }
