@@ -49,7 +49,7 @@ export default {
     value(newValue) {
       // Value changed from prop (and not by `toggle` method)
       if (newValue === false && this.internalValue === true) {
-        this.forceDisable()
+        this.disable()
       }
       this.internalValue = newValue
     },
@@ -102,7 +102,7 @@ export default {
   &.force-disable + .tgl-btn {
     &,
     &::after {
-      transition: all .3s cubic-bezier(1, 0, .25, 1) .2s;
+      transition: all .6s cubic-bezier(1, 0, .25, 1) .2s;
     }
   }
 	&:checked + .tgl-btn {
