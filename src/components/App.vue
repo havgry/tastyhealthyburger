@@ -10,6 +10,7 @@
 <script>
 import _some from 'lodash/some'
 
+import { getRandomInArray } from 'helpers'
 import ToggleButton from './ToggleButton.vue'
 
 export default {
@@ -40,18 +41,9 @@ export default {
       // Disable one attribute if all attributes are enabled.
       // However, don't disable the attribute that was just enabled.
       if (this.areAnyAttributesDisabled === false) {
-        const attributeToDisable = this.getRandomInArray(this.attributes, toggledAttributeIndex)
+        const attributeToDisable = getRandomInArray(this.attributes, toggledAttributeIndex)
         attributeToDisable.value = false
       }
-    },
-    getRandomInArray(array, indexToExclude = null) {
-      // Returns a random item in an array, but never
-      // an item with an index matching `indexToExclude`.
-      const randomIndex = Math.floor(Math.random() * array.length)
-      if (randomIndex === indexToExclude) {
-        return this.getRandomInArray(array, indexToExclude)
-      }
-      return array[randomIndex]
     },
   },
 }
