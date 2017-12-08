@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(attribute, index) in attributes" :key="attribute.id">
+    <li v-for="(attribute, index) in attributes" :key="attribute.label">
       <toggle-button v-model="attribute.value" @input="disableAttribute(index)"/>
       {{ attribute.label }}
     </li>
@@ -19,15 +19,12 @@ export default {
   },
   data: () => ({
     attributes: [{
-      id: 'tasty',
       label: 'Tasty',
       value: false,
     }, {
-      id: 'healthy',
       label: 'Healthy',
       value: false,
     }, {
-      id: 'burger',
       label: 'Burger',
       value: false,
     }],
