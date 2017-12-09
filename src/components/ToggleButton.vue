@@ -67,6 +67,7 @@ export default {
   position: relative;
   cursor: pointer;
   user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   &:after,
   &:before {
     position: relative;
