@@ -50,6 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
 @import '~normalize.css/normalize.css';
 
 html,
@@ -86,5 +87,7 @@ body {
 .button-label {
   line-height: 2em;
   padding-left: .5em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
 </style>
