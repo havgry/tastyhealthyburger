@@ -102,7 +102,7 @@ export default {
   &.force-disable + .tgl-btn {
     &,
     &::after {
-      transition: all .6s cubic-bezier(1, 0, .25, 1) .2s;
+      transition: all .1s cubic-bezier(1, 0, .25, 1) .4s;
     }
   }
 	&:checked + .tgl-btn {

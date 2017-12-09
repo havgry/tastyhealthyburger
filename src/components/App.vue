@@ -1,8 +1,8 @@
 <template>
-  <ul>
+  <ul class="button-list">
     <li v-for="(attribute, index) in attributes" :key="attribute.label">
       <toggle-button v-model="attribute.value" @input="disableAttribute(index)"/>
-      {{ attribute.label }}
+      <span v-text="attribute.label" class="button-label"/>
     </li>
   </ul>
 </template>
@@ -49,3 +49,42 @@ export default {
 }
 </script>
 
+<style lang="scss">
+@import '~normalize.css/normalize.css';
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.button-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  > li {
+    margin: 1.5em;
+    display: flex;
+  }
+}
+
+.button-label {
+  line-height: 2em;
+  padding-left: .5em;
+}
+</style>
