@@ -1,10 +1,17 @@
 <template>
-  <ul class="button-list">
-    <li v-for="(attribute, index) in attributes" :key="attribute.label">
-      <toggle-button v-model="attribute.value" @input="disableAttribute(index)"/>
-      <span v-text="attribute.label" class="button-label"/>
-    </li>
-  </ul>
+  <div class="wrapper align-center">
+    <ul class="button-list">
+      <li v-for="(attribute, index) in attributes" :key="attribute.label">
+        <toggle-button
+          v-model="attribute.value"
+          @input="disableAttribute(index)"
+          class="align-center"/>
+        <span
+          v-text="attribute.label"
+          class="button-label"/>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -50,11 +57,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400');
 @import '~normalize.css/normalize.css';
 
 html,
-body {
+body,
+.wrapper {
   height: 100%;
 }
 
@@ -62,7 +70,7 @@ html {
   box-sizing: border-box;
 }
 
-body {
+.align-center {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,6 +96,7 @@ body {
   line-height: 2em;
   padding-left: .5em;
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 2em;
 }
 </style>

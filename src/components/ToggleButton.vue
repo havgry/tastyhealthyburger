@@ -59,11 +59,13 @@ export default {
 
 <style lang="scss">
 
+$size: 4em;
+
 .tgl-btn {
   outline: 0;
   display: block;
-  width: 4em;
-  height: 2em;
+  width: $size;
+  height: $size / 2;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -91,7 +93,7 @@ export default {
   display: none;
   + .tgl-btn {
     background: #f0f0f0;
-		border-radius: 2em;
+		border-radius: $size / 2;
 		padding: 2px;
 		transition: all .4s ease;
 		&:after {
