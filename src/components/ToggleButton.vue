@@ -105,12 +105,12 @@ $size: 4em;
   &.force-disable + .tgl-btn {
     &,
     &::after {
-      transition: all .1s cubic-bezier(1, 0, .25, 1) .4s;
+      transition: all .2s cubic-bezier(1, 0, .25, 1) .8s;
     }
   }
-	&:checked + .tgl-btn {
-		background: #9FD6AE;
-	}
+  &:checked + .tgl-btn {
+    background: #74bbdb;
+  }
 }
 
 </style>
