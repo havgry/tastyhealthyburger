@@ -18,6 +18,7 @@
 import gql from 'graphql-tag'
 import _some from 'lodash/some'
 import _map from 'lodash/map'
+import { mapState } from 'vuex'
 
 import { getRandomInArray } from 'helpers'
 import ToggleButton from './ToggleButton.vue'
@@ -34,14 +35,19 @@ export default {
   apollo: {
     optionGroup: {
       query: gql`
-        query {
-          OptionGroup (shortId: "nYrnfYEv") {
+        query ($shortId: String!) {
+          OptionGroup (shortId: $shortId) {
             id
             shortId
             options
           }
         }
       `,
+      variables() {
+        return {
+          shortId: this.shortId,
+        }
+      },
       update({ OptionGroup }) {
         return OptionGroup
       },
@@ -52,6 +58,9 @@ export default {
       // Continue until a disabled option is found
       return _some(this.mappedOptions, option => option.value === false)
     },
+    ...mapState({
+      shortId: state => state.route.params.optionGroupShortId,
+    }),
   },
   watch: {
     optionGroup(newValue) {

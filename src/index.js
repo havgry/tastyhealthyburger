@@ -3,10 +3,17 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
+import VueRouter from 'vue-router'
+import { sync } from 'vuex-router-sync'
 
 import App from './components/App.vue'
+import router from './router'
+import store from './store'
 
 Vue.use(VueApollo)
+Vue.use(VueRouter)
+
+sync(store, router)
 
 const httpLink = new HttpLink({
   uri: 'https://api.graph.cool/simple/v1/cjc1to1bi0coo0107td2uf3ro',
@@ -25,5 +32,7 @@ const apolloProvider = new VueApollo({
 export default new Vue({
   el: '#app',
   apolloProvider,
+  router,
+  store,
   render: createElement => createElement(App),
 })
