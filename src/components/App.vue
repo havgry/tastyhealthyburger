@@ -91,13 +91,12 @@ body {
   padding: 0;
   list-style: none;
   > li {
-    margin: 1.5em;
+    margin: 2em;
     display: flex;
   }
 }
 
 .button-label {
-  line-height: 2em;
   padding-left: .5em;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
