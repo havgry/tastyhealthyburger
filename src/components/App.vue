@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper align-center">
     <ul class="button-list">
-      <li v-for="(attribute, index) in attributes" :key="attribute.label">
+      <li v-for="(option, index) in mappedOptions" :key="option.label">
         <toggle-button
-          v-model="attribute.value"
-          @input="disableAttribute(index)"
+          v-model="option.value"
+          @input="disableOption(index)"
           class="align-center"/>
         <span
-          v-text="attribute.label"
+          v-text="option.label"
           class="button-label"/>
       </li>
     </ul>
@@ -15,7 +15,9 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import _some from 'lodash/some'
+import _map from 'lodash/map'
 
 import { getRandomInArray } from 'helpers'
 import ToggleButton from './ToggleButton.vue'
@@ -26,31 +28,50 @@ export default {
     ToggleButton,
   },
   data: () => ({
-    attributes: [{
-      label: 'Tasty',
-      value: false,
-    }, {
-      label: 'Healthy',
-      value: false,
-    }, {
-      label: 'Burger',
-      value: false,
-    }],
+    optionGroup: null,
+    mappedOptions: [],
   }),
+  apollo: {
+    optionGroup: {
+      query: gql`
+        query {
+          OptionGroup (shortId: "nYrnfYEv") {
+            id
+            shortId
+            options
+          }
+        }
+      `,
+      update({ OptionGroup }) {
+        return OptionGroup
+      },
+    },
+  },
   computed: {
-    areAnyAttributesDisabled() {
-      // Continue until a disabled attribute is found
-      return _some(this.attributes, attr => attr.value === false)
+    areAnyOptionsDisabled() {
+      // Continue until a disabled option is found
+      return _some(this.mappedOptions, option => option.value === false)
+    },
+  },
+  watch: {
+    optionGroup(newValue) {
+      this.mapOptions(newValue.options)
     },
   },
   methods: {
-    disableAttribute(toggledAttributeIndex) {
-      // Disable one attribute if all attributes are enabled.
-      // However, don't disable the attribute that was just enabled.
-      if (this.areAnyAttributesDisabled === false) {
-        const attributeToDisable = getRandomInArray(this.attributes, toggledAttributeIndex)
-        attributeToDisable.value = false
+    disableOption(toggledOptionIndex) {
+      // Disable one option if all options are enabled.
+      // However, don't disable the option that was just enabled.
+      if (this.areAnyOptionsDisabled === false) {
+        const optionToDisable = getRandomInArray(this.mappedOptions, toggledOptionIndex)
+        optionToDisable.value = false
       }
+    },
+    mapOptions(options) {
+      this.mappedOptions = _map(options, option => ({
+        label: option,
+        value: false,
+      }))
     },
   },
 }
