@@ -60,7 +60,18 @@ html {
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   color: #222;
+}
+
+a {
+  color: #e91e63;
+  font-size: 1.4em;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .align-center {

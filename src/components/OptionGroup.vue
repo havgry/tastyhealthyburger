@@ -98,8 +98,6 @@ export default {
 
 .option-label {
   padding-left: .5em;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
   font-size: 1.8em;
   text-transform: uppercase;
 }
