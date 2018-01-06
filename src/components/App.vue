@@ -1,13 +1,45 @@
 <template>
   <div class="wrapper align-center">
     <router-view/>
+    <router-link
+      v-if="nextId"
+      :to="{ name: 'optionGroup', params: { id: nextId }}">Give me another one!</router-link>
   </div>
 </template>
 
 <script>
 
+import gql from 'graphql-tag'
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'app',
+  methods: {
+    ...mapMutations(['setNextId', 'setAllIds']),
+  },
+  computed: mapState({
+    currentId: state => state.route.params.id,
+    nextId: state => state.nextId,
+  }),
+  watch: {
+    currentId(newValue) {
+      this.setNextId({ id: newValue })
+    },
+  },
+  async created() {
+    const result = await this.$apollo.query({
+      query: gql`
+        query {
+          allOptionGroups {
+            shortId
+          }
+        }
+      `,
+    })
+
+    this.setAllIds({ optionGroups: result.data.allOptionGroups })
+    this.setNextId({ id: this.currentId })
+  },
 }
 
 </script>
@@ -35,6 +67,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 *,

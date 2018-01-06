@@ -15,7 +15,7 @@ const router = new Router({
     },
     {
       name: 'optionGroup',
-      path: '/:optionGroupShortId',
+      path: '/:id',
       component: OptionGroup,
     },
   ],

@@ -44,12 +44,10 @@ export default {
       `,
       variables() {
         return {
-          shortId: this.shortId,
+          shortId: this.id,
         }
       },
-      update({ OptionGroup }) {
-        return OptionGroup
-      },
+      update: ({ OptionGroup }) => OptionGroup,
     },
   },
   computed: {
@@ -58,7 +56,7 @@ export default {
       return _some(this.mappedOptions, option => option.value === false)
     },
     ...mapState({
-      shortId: state => state.route.params.optionGroupShortId,
+      id: state => state.route.params.id,
     }),
   },
   watch: {
