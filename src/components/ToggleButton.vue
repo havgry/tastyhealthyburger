@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'toggleButton',
   props: {
@@ -55,6 +56,7 @@ export default {
     },
   },
 }
+
 </script>
 
 <style lang="scss">

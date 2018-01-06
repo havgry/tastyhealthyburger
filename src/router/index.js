@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import App from 'components/App.vue'
+import OptionGroup from 'components/OptionGroup.vue'
 
 Vue.use(Router)
 
@@ -14,8 +14,9 @@ const router = new Router({
       redirect: '/nYrnfYEv',
     },
     {
+      name: 'optionGroup',
       path: '/:optionGroupShortId',
-      component: App,
+      component: OptionGroup,
     },
   ],
 })
