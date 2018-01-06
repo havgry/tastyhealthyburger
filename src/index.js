@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
+import { BatchHttpLink } from 'apollo-link-batch-http'
+
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
 import VueRouter from 'vue-router'
@@ -15,7 +16,7 @@ Vue.use(VueRouter)
 
 sync(store, router)
 
-const httpLink = new HttpLink({
+const httpLink = new BatchHttpLink({
   uri: 'https://api.graph.cool/simple/v1/cjc1to1bi0coo0107td2uf3ro',
 })
 
