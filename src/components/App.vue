@@ -1,9 +1,16 @@
 <template>
   <div class="wrapper align-center">
-    <router-view/>
-    <router-link
-      v-if="nextId"
-      :to="{ name: 'optionGroup', params: { id: nextId }}">Give me another one!</router-link>
+    <div>
+      <router-view @optionDisabled="showLinks"/>
+      <transition name="fade">
+        <div class="link-container" v-if="showLink">
+          Get 
+          <router-link
+            v-if="nextId"
+            :to="{ name: 'optionGroup', params: { id: nextId }}">another one</router-link>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -14,7 +21,15 @@ import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'app',
+  data: () => ({
+    showLink: false,
+  }),
   methods: {
+    async showLinks() {
+      setTimeout(() => {
+        this.showLink = true
+      }, 2000)
+    },
     ...mapMutations(['setNextId', 'setAllIds']),
   },
   computed: mapState({
@@ -59,6 +74,12 @@ html {
   box-sizing: border-box;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
@@ -67,11 +88,18 @@ body {
 
 a {
   color: #e91e63;
-  font-size: 1.4em;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
+}
+
+.link-container {
+  font-size: 1.2em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 .align-center {
@@ -81,10 +109,14 @@ a {
   flex-direction: column;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 </style>

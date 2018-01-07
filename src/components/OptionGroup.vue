@@ -71,6 +71,7 @@ export default {
       if (this.areAnyOptionsDisabled === false) {
         const optionToDisable = getRandomInArray(this.mappedOptions, toggledOptionIndex)
         optionToDisable.value = false
+        this.$emit('optionDisabled')
       }
     },
     mapOptions(options) {
