@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import { ApolloClient } from 'apollo-client'
-import { BatchHttpLink } from 'apollo-link-batch-http'
-
-import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
 import VueRouter from 'vue-router'
 import { sync } from 'vuex-router-sync'
+
+import { ApolloClient } from 'apollo-client'
+import { BatchHttpLink } from 'apollo-link-batch-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
 import App from './components/App.vue'
 import router from './router'

@@ -38,6 +38,7 @@
     "apollo-client": "^2.0.4",
     "apollo-link": "^1.0.7",
     "apollo-link-batch-http": "^1.0.4",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "lodash": "^4.17.4",
