@@ -107,7 +107,7 @@ $size: 4em;
   &.force-disable + .tgl-btn {
     &,
     &::after {
-      transition: all .2s cubic-bezier(1, 0, .25, 1) .8s;
+      transition: all .2s cubic-bezier(1, 0, .25, 1);
     }
   }
   &:checked + .tgl-btn {
