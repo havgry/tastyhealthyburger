@@ -17,7 +17,7 @@ Vue.use(VueRouter)
 sync(store, router)
 
 const httpLink = new BatchHttpLink({
-  uri: 'https://api.graph.cool/simple/v1/cjc1to1bi0coo0107td2uf3ro',
+  uri: 'https://api.graph.cool/simple/v1/cjrcf6fda0qui0122lyddj5sj',
 })
 
 const apolloClient = new ApolloClient({
