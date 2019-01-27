@@ -38,7 +38,9 @@ export default {
           OptionGroup (shortId: $shortId) {
             id
             shortId
-            options
+            options {
+              label
+            }
           }
         }
       `,
@@ -76,7 +78,7 @@ export default {
     },
     mapOptions(options) {
       this.mappedOptions = _map(options, option => ({
-        label: option,
+        label: option.label,
         value: false,
       }))
     },
