@@ -3,7 +3,7 @@
     <div v-for="(option, index) in options" :key="index">
       <input type="text" v-model="option.label" :placeholder="option.placeholder">
     </div>
-    <button @click="save" :disabled="formIsInvalid">Create</button>
+    <button @click="save" :disabled="formIsInvalid || isSaving">Create</button>
   </div>
 </template>
 
@@ -25,12 +25,13 @@ export default {
       placeholder: 'Burger',
       label: '',
     }],
+    isSaving: false,
   }),
   computed: {
     formIsInvalid() {
       const labels = []
 
-      return this.$data.options.some(({ label }) => {
+      return this.options.some(({ label }) => {
         if (label === '' || labels.indexOf(label) >= 0) {
           return true
         }
@@ -78,6 +79,7 @@ export default {
       return false
     },
     async save() {
+      this.isSaving = true
       const options = _map(this.options, option => ({
         label: option.label,
       }))
@@ -86,6 +88,7 @@ export default {
 
       if (duplicateShortId) {
         this.redirectToOptionGroup(duplicateShortId)
+        this.isSaving = false
         return
       }
 
@@ -112,6 +115,8 @@ export default {
       } catch (error) {
         // Handle error
       }
+
+      this.isSaving = false
 
       if (result) {
         // Redirect to new `optionGroup` after creation
