@@ -114,6 +114,7 @@ a {
   left: 0;
   right: 0;
   text-align: center;
+  margin-top: 2em;
 }
 
 .align-center {
