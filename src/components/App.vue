@@ -28,7 +28,7 @@ export default {
     async showLinks() {
       setTimeout(() => {
         this.showLink = true
-      }, 2000)
+      }, 1000)
     },
     ...mapMutations(['setNextId', 'setAllIds']),
   },
