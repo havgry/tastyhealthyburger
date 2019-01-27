@@ -2,11 +2,8 @@
   <div class="wrapper">
     <div class="content align-center">
       <div>
-        <transition name="fade">
-          <router-view
-            @optionDisabled="showLinks"
-            :key="$route.params.id"/>
-        </transition>
+        <router-view
+          @optionDisabled="showLinks"/>
         <transition name="fade">
           <div class="link-container" v-if="showLink && $route.name === 'optionGroup'">
             Get 

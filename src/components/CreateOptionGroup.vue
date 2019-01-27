@@ -1,7 +1,11 @@
 <template>
   <div>
     <div v-for="(option, index) in options" :key="index">
-      <input type="text" v-model="option.label" :placeholder="option.placeholder">
+      <input
+        type="text"
+        v-model="option.label"
+        :placeholder="option.placeholder"
+        :autofocus="index === 0">
     </div>
     <button @click="save" :disabled="formIsInvalid || isSaving">Create</button>
   </div>
@@ -130,16 +134,37 @@ export default {
 
 <style lang="scss" scoped>
 
-input {
+input,
+button {
   border-radius: 0.1em;
-  border: 1px solid rgb(240, 240, 240);
   padding: 0.2em 0.3em;
   font-size: 1.2em;
-  margin-bottom: 0.8em;
-  width: 15em;
   &:focus {
     outline: 0;
     border-color: #222;
+  }
+}
+
+input {
+  border: 1px solid rgb(240, 240, 240);
+  margin-bottom: 0.8em;
+  width: 15em;
+  background-color: #fbfbfb;
+}
+
+button {
+  width: 100%;
+  border: 1px solid currentColor;
+  color: #fff;
+  background-color: #74bbdb;
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
+    background-color: #61a7c7;
+  }
+  &:disabled {
+    background-color: #eaeaea;
+    color: #bbb;
   }
 }
 
