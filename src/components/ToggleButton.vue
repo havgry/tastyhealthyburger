@@ -63,7 +63,7 @@ export default {
 
 $size: 4em;
 $half-size: $size / 2;
-$padding: $size / 20;
+$padding: $size / 32;
 $indicator-width: $half-size - $padding * 2;
 
 .tgl-btn {

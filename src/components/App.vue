@@ -3,11 +3,14 @@
     <div>
       <router-view @optionDisabled="showLinks"/>
       <transition name="fade">
-        <div class="link-container" v-if="showLink">
+        <div class="link-container" v-if="showLink && $route.name === 'optionGroup'">
           Get 
           <router-link
             v-if="nextId"
             :to="{ name: 'optionGroup', params: { id: nextId }}">another one</router-link>
+            <br/>or
+            <router-link
+              :to="{ name: 'createOptionGroup' }">create your own</router-link>.
         </div>
       </transition>
     </div>
@@ -80,7 +83,8 @@ html {
   box-sizing: inherit;
 }
 
-body {
+body,
+input {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: #222;
