@@ -62,32 +62,31 @@ export default {
 <style lang="scss">
 
 $size: 4em;
+$half-size: $size / 2;
+$padding: $size / 20;
+$indicator-width: $half-size - $padding * 2;
 
 .tgl-btn {
   outline: 0;
   display: block;
   width: $size;
-  height: $size / 2;
+  height: $half-size;
   position: relative;
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  &:after,
-  &:before {
+  &:after {
     position: relative;
     display: block;
     content: '';
-    width: 50%;
+    width: $indicator-width;
     height: 100%;
   }
   &:after {
     left: 0;
   }
   .tgl:checked + &:after {
-    left: 50%;
-  }
-  &:before {
-    display: none;
+    left: $half-size;
   }
 }
 
@@ -95,8 +94,8 @@ $size: 4em;
   display: none;
   + .tgl-btn {
     background: #f0f0f0;
-		border-radius: $size / 2;
-		padding: 2px;
+		border-radius: $indicator-width;
+		padding: $padding;
 		transition: all .4s ease;
 		&:after {
       border-radius: 50%;
