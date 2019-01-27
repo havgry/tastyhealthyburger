@@ -3,7 +3,7 @@
     <div v-for="(option, index) in options" :key="index">
       <input type="text" v-model="option.label" :placeholder="option.placeholder">
     </div>
-    <button @click="save">Create</button>
+    <button @click="save" :disabled="formIsInvalid">Create</button>
   </div>
 </template>
 
@@ -26,6 +26,20 @@ export default {
       label: '',
     }],
   }),
+  computed: {
+    formIsInvalid() {
+      const labels = []
+
+      return this.$data.options.some(({ label }) => {
+        if (label === '' || labels.indexOf(label) >= 0) {
+          return true
+        }
+
+        labels.push(label)
+        return false
+      })
+    },
+  },
   methods: {
     redirectToOptionGroup(id) {
       this.$router.push({
